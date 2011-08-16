@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MMWEATHER>
+	<REPORT type="frc3">
+		<TOWN index="26850" sname="%CC%E8%ED%F1%EA" latitude="53" longitude="27">
+			<FORECAST day="01" month="08" year="2011" hour="03" tod="0" predict="0" weekday="2">
+				<PHENOMENA cloudiness="2" precipitation="4" rpower="0" spower="0"/>
+				<PRESSURE max="735" min="733"/>
+				<TEMPERATURE max="16" min="14"/>
+				<WIND min="2" max="4" direction="7"/>
+				<RELWET max="97" min="95"/>
+				<HEAT min="14" max="16"/>
+			</FORECAST>
+			<FORECAST day="01" month="08" year="2011" hour="09" tod="1" predict="0" weekday="2">
+				<PHENOMENA cloudiness="0" precipitation="10" rpower="0" spower="0"/>
+				<PRESSURE max="736" min="734"/>
+				<TEMPERATURE max="19" min="17"/>
+				<WIND min="3" max="5" direction="0"/>
+				<RELWET max="87" min="85"/>
+				<HEAT min="17" max="19"/>
+			</FORECAST>
+			<FORECAST day="01" month="08" year="2011" hour="15" tod="2" predict="0" weekday="2">
+				<PHENOMENA cloudiness="0" precipitation="10" rpower="0" spower="0"/>
+				<PRESSURE max="737" min="735"/>
+				<TEMPERATURE max="26" min="24"/>
+				<WIND min="4" max="6" direction="0"/>
+				<RELWET max="47" min="45"/>
+				<HEAT min="22" max="24"/>
+			</FORECAST>
+			<FORECAST day="01" month="08" year="2011" hour="21" tod="3" predict="0" weekday="2">
+				<PHENOMENA cloudiness="2" precipitation="4" rpower="0" spower="0"/>
+				<PRESSURE max="738" min="736"/>
+				<TEMPERATURE max="18" min="16"/>
+				<WIND min="3" max="5" direction="0"/>
+				<RELWET max="81" min="79"/>
+				<HEAT min="16" max="18"/>
+			</FORECAST>
+		</TOWN>
+	</REPORT>
+</MMWEATHER>
