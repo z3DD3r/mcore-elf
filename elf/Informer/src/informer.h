@@ -209,7 +209,7 @@ typedef struct
 
 typedef struct
 {
-    char            ID[8];
+    char            ID[8];      // id города
     BOOL            AutoUpdate; // автообновление
     UINT8           keyupdate1;
     UINT8           keyupdate2;

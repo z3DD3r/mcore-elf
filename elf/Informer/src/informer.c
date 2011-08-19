@@ -478,6 +478,8 @@ UINT32 ReadIniSettings(WCHAR *IniFile)
     INI_ReadParameter("WEATHER", "Key3_Update", "0", value, 4);
     info_weather.keyupdate3 = str2ul(value);
 
+    INI_ReadParameter("WEATHER", "ID", "26850", info_weather.ID, 8);
+
     INI_ReadParameter("WEATHER", "Show_Date", "yes", value, 4);
     info_weather.Show_Date = !strncmp(value, "yes", 3);
 
@@ -1622,11 +1624,7 @@ UINT32 HandleSockAnsw( EVENT_STACK_T *ev_st, APPLICATION_T *app )
             rlen=0;
             content_len = SIZE_BUF;
 
-            strcpy(request, "GET /xml/");
-            strcat(request, info_weather.ID); // код города
-            strcat(request, "_1.xml HTTP/1.1\r\n");
-            strcat(request, "Host: " HTTP_HOST "\r\n");
-            strcat(request, "User-Agent: " HTTP_USER_AGENT "\r\n\r\n");
+            sprintf(request, "GET /xml/%s_1.xml HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\n\r\n", info_weather.ID, HTTP_HOST, HTTP_USER_AGENT);
             data = (char*)request;
 
                 len = strlen(data);		// осталось записать
@@ -1670,7 +1668,8 @@ UINT32 HandleSockAnsw( EVENT_STACK_T *ev_st, APPLICATION_T *app )
                     // откроем файл для записи
                     WCHAR   uri[256];
                     u_strcpy(uri, ELF_folder);
-                    u_strcat(uri, L"Informer.xml");
+                    u_atou(info_weather.ID, uri+u_strlen(uri));
+                    u_strcat(uri, L".xml");
                     fh = DL_FsOpenFile( uri,  FILE_WRITE_MODE,  0 );
                 }
 
@@ -1756,7 +1755,8 @@ UINT32 LoadFile(void)
 
 
     u_strcpy(uri, ELF_folder);
-    u_strcat(uri, L"Informer.xml");
+    u_atou(info_weather.ID, uri+u_strlen(uri));
+    u_strcat(uri, L".xml");
 
     dbgf("load file", NULL);
     memset(buffer, 0, SIZE_BUF);
@@ -1778,14 +1778,6 @@ UINT32 LoadFile(void)
         }
 
         // Парсинг файла
-        InitTag("TOWN", &tag);
-        if(ReadTag(buffer, &tag, 1) != NULL)
-            strcpy(info_weather.ID, GetPTagString(tag, "index"));
-        else
-            memset(info_weather.ID, 0, 8);
-        CloseTag(&tag);
-
-        dbgf("Town ID: %s", info_weather.ID);
         for (i=0; i < COUNT_MMWEATHER; i++)
         {
             InitTag("FORECAST", &tag);
